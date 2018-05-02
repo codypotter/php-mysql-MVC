@@ -1,4 +1,38 @@
+<?php
+    $myDBinfo = 'mysql:host=127.0.0.1;dbname=dogsrus';
+    $myDBuser = 'root';
+    $myDBpassword = '';
+    $myDate = date('Y-m-d');
 
+    try {
+        $myConnection = new PDO($myDBinfo, $myDBuser, $myDBpassword);
+    } catch (PDOException $myError) {
+        echo('The Database connection failed.');
+    }
+
+    if(isset($_POST['deleteSubmit'])) {
+        $dogID = $_POST['dogID'];
+        $myQuery = "DELETE FROM dogs WHERE dogID=:dogID";
+        $myDeleteDogArray = array('dogID'=>$dogID);
+
+        $mySqlPrep = $myConnection->prepare($myQuery);
+        $mySuccess = $mySqlPrep->execute($myDeleteDogArray);
+
+        if($mySuccess) {
+            echo(
+                '<div class="alert alert-success" role="alert">
+                    Successfully deleted dog ' . $dogID . '
+                </div>'
+            );
+        } else {
+            echo(
+                '<div class="alert alert-danger" role="alert">
+                    An error occurred.
+                </div>'
+            );
+        }
+    }
+ ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -28,7 +62,7 @@
                 </ul>
             </nav>
             <div class="col">
-                <form class="border rounded p-2 bg-light material-container" action="potter-add.php" method="post">
+                <form class="border rounded p-2 bg-light material-container" action="potter-delete.php" method="post">
                     <h2>Delete dog</h2>
                     <div class="form-group">
                         <label for="dogID">Dog ID</label>
@@ -40,8 +74,7 @@
                             <label class="form-check-label" for="userIsCertain">I am sure I want to permanently delete a dog from the database.</label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-danger btn-lg btn-block">Delete</button>
-                    <small>Please don't press this in error.</small>
+                    <input type="submit" name="deleteSubmit" value="🔥Delete🔥" class="btn btn-danger btn-lg btn-block">
                 </form>
             </div>
         </div>

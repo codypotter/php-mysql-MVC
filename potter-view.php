@@ -46,8 +46,8 @@
                             <th scope="col">Name</th>
                             <th scope="col">Breed</th>
                             <th scope="col">Dog Temperament</th>
-                            <th scope="col">Owner ID</th>
-                            <th scope="col">Preferred Groomer ID</th>
+                            <th scope="col">Owner</th>
+                            <th scope="col">Preferred Groomer</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,14 +55,27 @@
                             $allDogs = "SELECT * FROM dogs";
                             $allDogRecords = $myConnection->query($allDogs);
                             foreach ($allDogRecords as $dog) {
+                                // Get owner name using known owner ID
+                                $ownerQuery = "SELECT * FROM customers WHERE customerID=:customerID";
+                                $myOwnerSqlPrep = $myConnection->prepare($ownerQuery);
+                                $myOwnerArray = array('customerID'=>$dog['customerID']);
+                                $myOwnerQuerySuccess = $myOwnerSqlPrep->execute($myOwnerArray);
+                                $myOwnerQueryData = $myOwnerSqlPrep->fetch();
+
+                                // Get preferred groomer name using known groomer ID
+                                $groomerQuery = "SELECT * FROM employees WHERE employeeID=:employeeID";
+                                $myGroomerSqlPrep = $myConnection->prepare($groomerQuery);
+                                $myGroomerArray = array('employeeID'=>$dog['preferredGroomerID']);
+                                $myGroomerQuerySuccess = $myGroomerSqlPrep->execute($myGroomerArray);
+                                $myGroomerQueryData = $myGroomerSqlPrep->fetch();
                                 echo(
                                     '<tr>
                                         <th scope="row">' . $dog['dogID'] . '</th>
                                         <td>' . $dog['dogName'] . '</td>
                                         <td>' . $dog['dogBreed'] . '</td>
                                         <td>' . $dog['temperament'] . '</td>
-                                        <td>' . $dog['customerID'] . '</td>
-                                        <td>' . $dog['preferredGroomerID'] . '</td>
+                                        <td>' . $myOwnerQueryData['customerName'] . '</td>
+                                        <td>' . $myGroomerQueryData['employeeName'] . '</td>
                                     </tr>'
                                 );
                             }

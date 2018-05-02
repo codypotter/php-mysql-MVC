@@ -17,6 +17,20 @@
         $mySqlPrep = $myConnection->prepare($myQuery);
         $myCustomerValueArray = array('customerName'=>$customerName, 'customerSinceDate'=>$myDate, 'dollarsSpent'=>0.00, 'lastVisitDate'=>$myDate);
         $mySuccess = $mySqlPrep->execute($myCustomerValueArray);
+
+        if($mySuccess) {
+            echo(
+                '<div class="alert alert-success" role="alert">
+                    Successfully created ' . $customerName . '
+                </div>'
+            );
+        } else {
+            echo(
+                '<div class="alert alert-danger" role="alert">
+                    An error occurred.
+                </div>'
+            );
+        }
     }
 
     if(isset($_POST['dogSubmit'])) {
@@ -31,6 +45,20 @@
         $mySqlPrep = $myConnection->prepare($myDogQuery);
         $myDogValueArray = array('dogName'=>$dogName, 'dogID'=>NULL, 'customerID'=>$ownerID, 'preferredGroomerID'=>$preferredGroomerID, 'temperament'=>$temperament, 'dogBreed'=>$dogBreed);
         $mySuccess = $mySqlPrep->execute($myDogValueArray);
+
+        if($mySuccess) {
+            echo(
+                '<div class="alert alert-success" role="alert">
+                    Successfully created ' . $dogName . '
+                </div>'
+            );
+        } else {
+            echo(
+                '<div class="alert alert-danger" role="alert">
+                    An error occurred.
+                </div>'
+            );
+        }
     }
 
     if(isset($_POST['employeeSubmit'])) {
@@ -47,6 +75,19 @@
         $mySqlPrep = $myConnection->prepare($myEmployeeQuery);
         $myEmployeeValueArray = array('employeeName'=>$employeeName, 'isGroomer'=>$employeeIsGroomer, 'wage'=>$employeeWage, 'hireDate'=>$myDate, 'position'=>$employeePosition);
         $mySuccess = $mySqlPrep->execute($myEmployeeValueArray);
+        if($mySuccess) {
+            echo(
+                '<div class="alert alert-success" role="alert">
+                    Successfully created ' . $employeeName . '
+                </div>'
+            );
+        } else {
+            echo(
+                '<div class="alert alert-danger" role="alert">
+                    An error occurred.
+                </div>'
+            );
+        }
     }
  ?>
 <!DOCTYPE html>
