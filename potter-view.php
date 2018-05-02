@@ -1,4 +1,12 @@
+<!--
+    Author: Cody potter
+    Date: 2018-05-01
+    Description: PHP file to read entries from a database
+    Note: I'm really happy with how this turned out. It still
+        has room to grow.
+-->
 <?php
+    // initial setup
     $myDBinfo = 'mysql:host=127.0.0.1;dbname=dogsrus';
     $myDBuser = 'root';
     $myDBpassword = '';
@@ -52,9 +60,16 @@
                     </thead>
                     <tbody>
                         <?php
+                            // make a query to get ALL the dogs
                             $allDogs = "SELECT * FROM dogs";
+                            // get the records using the query
                             $allDogRecords = $myConnection->query($allDogs);
+                            // iterate over the records, making the table as you go
                             foreach ($allDogRecords as $dog) {
+                                // Need to use some nested queries to get useful data
+                                //
+                                // Extra Credit for this part? :^)
+                                //
                                 // Get owner name using known owner ID
                                 $ownerQuery = "SELECT * FROM customers WHERE customerID=:customerID";
                                 $myOwnerSqlPrep = $myConnection->prepare($ownerQuery);
@@ -68,6 +83,8 @@
                                 $myGroomerArray = array('employeeID'=>$dog['preferredGroomerID']);
                                 $myGroomerQuerySuccess = $myGroomerSqlPrep->execute($myGroomerArray);
                                 $myGroomerQueryData = $myGroomerSqlPrep->fetch();
+
+                                // Finally, build the table row using all our data from intial and nested queries
                                 echo(
                                     '<tr>
                                         <th scope="row">' . $dog['dogID'] . '</th>
@@ -97,6 +114,8 @@
                     </thead>
                     <tbody>
                         <?php
+                        // PHP styling says indent should start here
+                            // But I think it looks cleaner when I indent here
                             $allCustomers = "SELECT * FROM customers";
                             $allCustomerRecords = $myConnection->query($allCustomers);
                             foreach ($allCustomerRecords as $customer) {
@@ -111,7 +130,6 @@
                                 );
                             }
                         ?>
-
                     </tbody>
                 </table>
             </div>
@@ -152,7 +170,6 @@
                                 );
                             }
                         ?>
-
                     </tbody>
                 </table>
             </div>

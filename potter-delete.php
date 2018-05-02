@@ -1,4 +1,12 @@
+<!--
+    Author: Cody potter
+    Date: 2018-05-01
+    Description: PHP file to delete a dog entry from a database
+    Note: I'm really happy with how this turned out. It still
+        has room to grow.
+-->
 <?php
+    // inital setup
     $myDBinfo = 'mysql:host=127.0.0.1;dbname=dogsrus';
     $myDBuser = 'root';
     $myDBpassword = '';

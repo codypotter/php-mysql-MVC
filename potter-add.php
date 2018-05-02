@@ -1,3 +1,10 @@
+<!--
+    Author: Cody potter
+    Date: 2018-05-01
+    Description: PHP file to add an entry from a database
+    Note: I'm really happy with how this turned out. It still 
+        has room to grow.
+-->
 <?php
     $myDBinfo = 'mysql:host=127.0.0.1;dbname=dogsrus';
     $myDBuser = 'root';
@@ -10,11 +17,20 @@
         echo('The Database connection failed.');
     }
 
+    // each of these if statements pretty much do the same thing with
+    // different data.
     if(isset($_POST['customerSubmit'])) {
         $customerName = $_POST['customerName'];
         $myQuery = "INSERT INTO customers (customerName, customerSinceDate, dollarsSpent, lastVisitDate) VALUES (:customerName, :customerSinceDate, :dollarsSpent, :lastVisitDate)";
 
         $mySqlPrep = $myConnection->prepare($myQuery);
+        // I decided to start dollars spent at $0.00,
+        // customer since date at today's date
+        // and last visit date at today's date because,
+        // it just made sense. I'd like to have another page
+        // to modify these values later, because dollars spent should
+        // increase with each visit, and last visit date should
+        // always update at the same time.
         $myCustomerValueArray = array('customerName'=>$customerName, 'customerSinceDate'=>$myDate, 'dollarsSpent'=>0.00, 'lastVisitDate'=>$myDate);
         $mySuccess = $mySqlPrep->execute($myCustomerValueArray);
 
