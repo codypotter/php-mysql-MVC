@@ -1,111 +1,8 @@
 <!--
-    Author: Cody potter
-    Date: 2018-05-01
-    Description: PHP file to add an entry from a database
-    Note: I'm really happy with how this turned out. It still 
-        has room to grow.
+Author: Cody Potter
+Date: 2018-05-14
+Assignment: Week 5/6
 -->
-<?php
-    $myDBinfo = 'mysql:host=127.0.0.1;dbname=dogsrus';
-    $myDBuser = 'root';
-    $myDBpassword = '';
-    $myDate = date('Y-m-d');
-
-    try {
-        $myConnection = new PDO($myDBinfo, $myDBuser, $myDBpassword);
-    } catch (PDOException $myError) {
-        echo('The Database connection failed.');
-    }
-
-    // each of these if statements pretty much do the same thing with
-    // different data.
-    if(isset($_POST['customerSubmit'])) {
-        $customerName = $_POST['customerName'];
-        $myQuery = "INSERT INTO customers (customerName, customerSinceDate, dollarsSpent, lastVisitDate) VALUES (:customerName, :customerSinceDate, :dollarsSpent, :lastVisitDate)";
-
-        $mySqlPrep = $myConnection->prepare($myQuery);
-        // I decided to start dollars spent at $0.00,
-        // customer since date at today's date
-        // and last visit date at today's date because,
-        // it just made sense. I'd like to have another page
-        // to modify these values later, because dollars spent should
-        // increase with each visit, and last visit date should
-        // always update at the same time.
-        $myCustomerValueArray = array('customerName'=>$customerName, 'customerSinceDate'=>$myDate, 'dollarsSpent'=>0.00, 'lastVisitDate'=>$myDate);
-        $mySuccess = $mySqlPrep->execute($myCustomerValueArray);
-
-        if($mySuccess) {
-            echo(
-                '<div class="alert alert-success" role="alert">
-                    Successfully created ' . $customerName . '
-                </div>'
-            );
-        } else {
-            echo(
-                '<div class="alert alert-danger" role="alert">
-                    An error occurred.
-                </div>'
-            );
-        }
-    }
-
-    if(isset($_POST['dogSubmit'])) {
-        $dogName = $_POST['dogName'];
-        $dogBreed = $_POST['dogBreed'];
-        $ownerID = $_POST['ownerID'];
-        $preferredGroomerID = $_POST['preferredGroomerID'];
-        $temperament = $_POST['temperament'];
-
-        $myDogQuery = "INSERT INTO dogs (dogName, dogID, customerID, preferredGroomerID, temperament, dogBreed) VALUES (:dogName, :dogID, :customerID, :preferredGroomerID, :temperament, :dogBreed)";
-
-        $mySqlPrep = $myConnection->prepare($myDogQuery);
-        $myDogValueArray = array('dogName'=>$dogName, 'dogID'=>NULL, 'customerID'=>$ownerID, 'preferredGroomerID'=>$preferredGroomerID, 'temperament'=>$temperament, 'dogBreed'=>$dogBreed);
-        $mySuccess = $mySqlPrep->execute($myDogValueArray);
-
-        if($mySuccess) {
-            echo(
-                '<div class="alert alert-success" role="alert">
-                    Successfully created ' . $dogName . '
-                </div>'
-            );
-        } else {
-            echo(
-                '<div class="alert alert-danger" role="alert">
-                    An error occurred.
-                </div>'
-            );
-        }
-    }
-
-    if(isset($_POST['employeeSubmit'])) {
-        $employeeName = $_POST['employeeName'];
-        $employeePosition = $_POST['employeePosition'];
-        $employeeWage = $_POST['employeeWage'];
-        $employeeIsGroomer = false;
-        if(isset($_POST['employeeIsGroomer'])) {
-            $employeeIsGroomer = true;
-        }
-
-        $myEmployeeQuery = "INSERT INTO employees (employeeName, isGroomer, wage, hireDate, position) VALUES (:employeeName, :isGroomer, :wage, :hireDate, :position)";
-
-        $mySqlPrep = $myConnection->prepare($myEmployeeQuery);
-        $myEmployeeValueArray = array('employeeName'=>$employeeName, 'isGroomer'=>$employeeIsGroomer, 'wage'=>$employeeWage, 'hireDate'=>$myDate, 'position'=>$employeePosition);
-        $mySuccess = $mySqlPrep->execute($myEmployeeValueArray);
-        if($mySuccess) {
-            echo(
-                '<div class="alert alert-success" role="alert">
-                    Successfully created ' . $employeeName . '
-                </div>'
-            );
-        } else {
-            echo(
-                '<div class="alert alert-danger" role="alert">
-                    An error occurred.
-                </div>'
-            );
-        }
-    }
- ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -124,19 +21,19 @@
             <nav class="container m-3">
                 <ul class="nav nav-pills justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="potter-view.php">View Data</a>
+                        <a class="nav-link" href="/cs234-a3/controller.php?link=view">View Data</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="potter-add.php">Add Data</a>
+                        <a class="nav-link active" href="/cs234-a3/controller.php?link=add">Add Data</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="potter-delete.php">Delete Data</a>
+                        <a class="nav-link" href="/cs234-a3/controller.php?link=delete">Delete Data</a>
                     </li>
                 </ul>
             </nav>
             <div class="row">
                 <div class="col">
-                    <form class="border rounded p-2 bg-light material-container" action="potter-add.php" method="post">
+                    <form class="border rounded p-2 bg-light material-container" action="/cs234-a3/controller.php?link=add" method="post">
                         <h2>New Customer</h2>
                         <div class="form-group">
                             <label for="customerName">Name</label>
@@ -146,7 +43,7 @@
                     </form>
                 </div>
                 <div class="col">
-                    <form class="border rounded p-2 bg-light material-container" action="potter-add.php" method="post">
+                    <form class="border rounded p-2 bg-light material-container" action="/cs234-a3/controller.php?link=add" method="post">
                         <h2>New Dog</h2>
                         <div class="form-group">
                             <label for="dogName">Name</label>
@@ -175,7 +72,7 @@
                     </form>
                 </div>
                 <div class="col">
-                    <form class="border rounded p-2 bg-light material-container" action="potter-add.php" method="post">
+                    <form class="border rounded p-2 bg-light material-container" action="/cs234-a3/controller.php?link=add" method="post">
                         <h2>New Employee</h2>
                         <div class="form-group">
                             <label for="employeeName">Name</label>

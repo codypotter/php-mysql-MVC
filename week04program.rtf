@@ -1,0 +1,182 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\froman\fcharset0 TimesNewRomanPSMT;\f2\ftech\fcharset77 Symbol;
+\f3\froman\fcharset0 Times-Roman;\f4\fmodern\fcharset0 CourierNewPSMT;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid101\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc4\levelnfcn4\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{lower-alpha\}.}{\leveltext\leveltemplateid102\'02\'01.;}{\levelnumbers\'01;}\fi-360\li1440\lin1440 }{\listlevel\levelnfc2\levelnfcn2\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{lower-roman\}.}{\leveltext\leveltemplateid103\'02\'02.;}{\levelnumbers\'01;}\fi-360\li2160\lin2160 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid104\'02\'03.;}{\levelnumbers\'01;}\fi-360\li2880\lin2880 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid201\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid202\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid203\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li2160\lin2160 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid204\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li2880\lin2880 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid301\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc4\levelnfcn4\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{lower-alpha\}.}{\leveltext\leveltemplateid302\'02\'01.;}{\levelnumbers\'01;}\fi-360\li1440\lin1440 }{\listname ;}\listid4}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}}
+{\info
+{\author Debra A. Carino}
+{\*\company Carino Consulting}}\margl1080\margr1080\margb720\margt1080\vieww12540\viewh13880\viewkind1
+\deftab720
+\pard\pardeftab720\ri0\sa240\partightenfactor0
+
+\f0\b\fs22 \cf0 CS 234P: PHP/MySQL Web Development\uc0\u8232 Week 4 Assignment\
+\pard\pardeftab720\ri0\sa240\partightenfactor0
+
+\fs24 \cf0 Overview \'96 Using the MVC pattern\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f1\b0 \cf0 This week, you\'92ll rewrite your database access program from week 3 (or a completely separate database interaction if you so desire) so that if follows the Model-View-Controller pattern to isolate your PHP code into three pieces: the model files (used to interact with the data store), the view files (used to generate HTML/CSS to return to the end user) and the controller file (used to get information from end users and return appropriate views in response).\
+\pard\pardeftab720\ri0\sb240\partightenfactor0
+
+\f0\b \cf0 Getting started
+\b0 \
+\pard\tx720\pardeftab720\li720\fi-360\ri0\partightenfactor0
+\ls1\ilvl0
+\f2\fs20 \cf0 \'a5	
+\f3\fs24 Create a folder in the correct location for your local test server or in your 
+\i 234stu##
+\i0  directory on the WebDev server named 
+\i lastname-hw04
+\i0 . Replace 
+\i lastname
+\i0  with your actual last name. For example, if Rasmus Lerdorf was completing the assignment, he would create a 
+\i lerdorf-hw04
+\i0  folder.
+\f1 \
+\ls1\ilvl0
+\f2\fs20 \'a5	
+\f3\fs24 Save this document inside the folder as 
+\i lastname-planning.rtf
+\i0 . As always, replace 
+\i lastname
+\i0  with your own last name.
+\f1 \
+\pard\pardeftab720\ri0\sb240\partightenfactor0
+
+\f0\b \cf0 Part 1 \'96 Plan out your code separation
+\b0 \
+\pard\pardeftab720\li720\fi-360\ri0\partightenfactor0
+\ls2\ilvl0
+\f1\fs20 \cf0 1)	
+\fs24 Complete the following planning section. Identify what portions of your code fall into each of the three roles:\
+\pard\pardeftab720\li1080\fi-360\ri0\partightenfactor0
+\ls2\ilvl1
+\fs20 \cf0 a)	
+\fs24 Model\
+\pard\pardeftab720\li1440\fi-360\ri0\partightenfactor0
+\ls2\ilvl2
+\fs20 \cf0 i)	
+\fs24 List specific actions within this role\
+\pard\pardeftab720\li1800\fi-360\ri0\partightenfactor0
+\ls2\ilvl3
+\fs20 \cf0 (1)	Connect to the database\
+(2)	Pull data from database\
+(3)	Insert data into database\
+(4)	Delete data from database
+\fs24 \
+\pard\pardeftab720\li1440\fi-360\ri0\partightenfactor0
+\ls2\ilvl2
+\fs20 \cf0 ii)	
+\fs24 List file(s) that contain these actions\
+\pard\pardeftab720\li1800\fi-360\ri0\partightenfactor0
+\ls2\ilvl3
+\fs20 \cf0 (1)	
+\fs24  connect.php\
+(2)	select.php\
+(3)	insert.php\
+(4)	delete.php\
+\pard\pardeftab720\li1080\fi-360\ri0\partightenfactor0
+\ls2\ilvl1
+\fs20 \cf0 b)	
+\fs24 View\
+\pard\pardeftab720\li1440\fi-360\ri0\partightenfactor0
+\ls2\ilvl2
+\fs20 \cf0 i)	
+\fs24 List specific actions within this role\
+\pard\pardeftab720\li1800\fi-360\ri0\partightenfactor0
+\ls2\ilvl3
+\fs20 \cf0 (1)	Display the database\
+(2)	Display a form to add to database\
+(3)	Display a form to delete from database
+\fs24 \
+\pard\pardeftab720\li1440\fi-360\ri0\partightenfactor0
+\ls2\ilvl2
+\fs20 \cf0 ii)	
+\fs24 List file(s) that contain these actions\
+\pard\pardeftab720\li1800\fi-360\ri0\partightenfactor0
+\ls2\ilvl3
+\fs20 \cf0 (1)	
+\fs24  view.php\
+(2)	add.php\
+(3)	delete.php\
+\pard\pardeftab720\li1080\fi-360\ri0\partightenfactor0
+\ls2\ilvl1
+\fs20 \cf0 c)	
+\fs24 Controller\
+\pard\pardeftab720\li1440\fi-360\ri0\partightenfactor0
+\ls2\ilvl2
+\fs20 \cf0 i)	
+\fs24 List specific actions within this role\
+\pard\pardeftab720\li1800\fi-360\ri0\partightenfactor0
+\ls2\ilvl3
+\fs20 \cf0 (1)	Connect the views to the model by monitoring GET and POST arrays, waiting for submissions from any of the forms in the application
+\fs24 \
+\pard\pardeftab720\li1440\fi-360\ri0\partightenfactor0
+\ls2\ilvl2
+\fs20 \cf0 ii)	
+\fs24 List file that contains these actions\
+\pard\pardeftab720\li1800\fi-360\ri0\partightenfactor0
+\ls2\ilvl3
+\fs20 \cf0 (1)	
+\fs24  connect.php\
+\pard\pardeftab720\ri0\sb240\partightenfactor0
+
+\f0\b \cf0 Part 2 \'96 Rework your code
+\b0 \
+\pard\tx720\pardeftab720\li720\fi-360\ri0\sb100\sa100\partightenfactor0
+\ls3\ilvl3
+\f1\fs20 \cf0 1.	
+\fs24 Modify your week 3 application so that it follows the MVC pattern. Your code should:\
+\pard\tx1440\pardeftab720\li1440\fi-360\ri0\sb100\sa100\partightenfactor0
+\ls3\ilvl1
+\f4\fs20 \cf0 o	
+\f1\fs24 Still allow users to view, insert, and delete records from one or more of your database tables\
+\ls3\ilvl1
+\f4\fs20 o	
+\f1\fs24 Have a controller file to direct requests to other files as needed depending upon end-user actions\
+\ls3\ilvl1
+\f4\fs20 o	
+\f1\fs24 Have database connection/querying isolated appropriately\
+\ls3\ilvl1
+\f4\fs20 o	
+\f1\fs24 Have display HTML/CSS isolated appropriately\
+\ls3\ilvl1
+\f4\fs20 o	
+\f1\fs24 Follow the don\'92t-repeat-yourself principal as closely as reasonably possible\
+\pard\pardeftab720\ri0\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b \cf0 \page \
+\pard\pardeftab720\ri0\sb240\partightenfactor0
+\cf0 How to Submit Completed Work\
+\pard\pardeftab720\li720\fi-360\ri0\sa240\partightenfactor0
+\ls4\ilvl1
+\f1 \cf0 1.	Upload: 
+\b0 If necessary, upload your 
+\f3\i lastname-hw04
+\i0  folder to your 
+\i 234stu##
+\i0  directory on the WebDev server. \
+\pard\pardeftab720\li720\fi-360\ri0\sa240\partightenfactor0
+\ls4\ilvl1
+\b \cf0 2.	Test:
+\b0  View your uploaded application in a browser to be sure that it is still functional. Copy the URL to the index page.
+\f1 \
+\pard\pardeftab720\li720\fi-360\ri0\sa240\partightenfactor0
+\ls4\ilvl1
+\b \cf0 3.	Insert URL on Index Page: 
+\b0 Create a link on the home
+\f3  page for the application that points to the complete URL to this page on the WebDev server. The href attribute for the link should look something like: href="http://198.176.185.250/classes/234stu##/lastname-hw04/lastname-index.php". Be sure to save your changes.
+\f1 \
+\pard\pardeftab720\li720\fi-360\ri0\partightenfactor0
+\ls4\ilvl1
+\b \cf0 4.	Compress:
+\i  
+\i0\b0 Zip up the 
+\i lastname-hw04
+\i0  folder and upload through the appropriate link in Moodle.\
+}

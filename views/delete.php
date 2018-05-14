@@ -1,46 +1,8 @@
 <!--
-    Author: Cody potter
-    Date: 2018-05-01
-    Description: PHP file to delete a dog entry from a database
-    Note: I'm really happy with how this turned out. It still
-        has room to grow.
+Author: Cody Potter
+Date: 2018-05-14
+Assignment: Week 5/6
 -->
-<?php
-    // inital setup
-    $myDBinfo = 'mysql:host=127.0.0.1;dbname=dogsrus';
-    $myDBuser = 'root';
-    $myDBpassword = '';
-    $myDate = date('Y-m-d');
-
-    try {
-        $myConnection = new PDO($myDBinfo, $myDBuser, $myDBpassword);
-    } catch (PDOException $myError) {
-        echo('The Database connection failed.');
-    }
-
-    if(isset($_POST['deleteSubmit'])) {
-        $dogID = $_POST['dogID'];
-        $myQuery = "DELETE FROM dogs WHERE dogID=:dogID";
-        $myDeleteDogArray = array('dogID'=>$dogID);
-
-        $mySqlPrep = $myConnection->prepare($myQuery);
-        $mySuccess = $mySqlPrep->execute($myDeleteDogArray);
-
-        if($mySuccess) {
-            echo(
-                '<div class="alert alert-success" role="alert">
-                    Successfully deleted dog ' . $dogID . '
-                </div>'
-            );
-        } else {
-            echo(
-                '<div class="alert alert-danger" role="alert">
-                    An error occurred.
-                </div>'
-            );
-        }
-    }
- ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -59,18 +21,18 @@
             <nav class="container m-3">
                 <ul class="nav nav-pills justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link btn-danger" href="potter-view.php">View Data</a>
+                        <a class="nav-link btn-danger" href="/cs234-a3/controller.php?link=view">View Data</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn-danger" href="potter-add.php">Add Data</a>
+                        <a class="nav-link btn-danger" href="/cs234-a3/controller.php?link=add">Add Data</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active btn-danger" href="potter-delete.php">Delete Data</a>
+                        <a class="nav-link active btn-danger" href="/cs234-a3/controller.php?link=delete">Delete Data</a>
                     </li>
                 </ul>
             </nav>
             <div class="col">
-                <form class="border rounded p-2 bg-light material-container" action="potter-delete.php" method="post">
+                <form class="border rounded p-2 bg-light material-container" action="/cs234-a3/controller.php?link=delete" method="post">
                     <h2>Delete dog</h2>
                     <div class="form-group">
                         <label for="dogID">Dog ID</label>
